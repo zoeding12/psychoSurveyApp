@@ -1,18 +1,18 @@
 package njbh.autism.demo.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.sql.Date;
 import java.util.UUID;
 
 @Entity // this tells Hibernate to make a table out of this class
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy=GenerationType.AUTO)
     private UUID id;
     private String name;
-    private String date;
+    private String birthdate;
+    private int age;
     private String email;
 
     public UUID getId() {
@@ -32,12 +32,16 @@ public class User {
     }
 
     public String getDate() {
-        return date;
+        return birthdate;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setDate(Date date) {
+        this.birthdate = birthdate;
     }
+
+    public int getAge() { return age; }
+
+    public void setAge(int age) { this.age = age; }
 
     public String getEmail() {
         return email;

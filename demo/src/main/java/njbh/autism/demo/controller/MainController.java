@@ -1,12 +1,12 @@
 package njbh.autism.demo.controller;
 
 import njbh.autism.demo.model.User;
+import njbh.autism.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.UUID;
-import njbh.autism.demo.repository.UserRepository;
 
 @Controller //This means that this class is a controller
 @RequestMapping(path = "/survey") //this means url starts with /survey after application path
@@ -17,11 +17,15 @@ public class MainController {
     @PostMapping(path = "/addUser")
     public @ResponseBody
     String addUser (@RequestParam String name,
-                    @RequestParam String email) {
+                    @RequestParam String email,
+                    @RequestParam String birthday,
+                    @RequestParam int age) {  //input format to yyyy-MM-dd
         User p = new User();
+        p.setId(UUID.randomUUID());
         p.setName(name);
         p.setEmail(email);
-        p.setId(UUID.randomUUID());
+        p.setDate(java.sql.Date.valueOf(birthday));
+        p.setAge(age);
         userRepo.save(p);
         return "saved";
     }
