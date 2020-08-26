@@ -4,6 +4,7 @@ import njbh.autism.demo.model.TestConnection;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.jdbc.core.JdbcTemplate;
+
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
@@ -19,7 +20,7 @@ public class MySqlTestConnectionDaoImpl implements TestConnectionDao{
     @Autowired
     private JdbcTemplate jdbcTemplate;
 
-    private static class TestConnectionRowMapper implements RowMapper<TestConnection>{
+    private static class TestConnectionRowMapper implements RowMapper<TestConnection> {
 
         @Override
         public TestConnection mapRow(ResultSet resultSet, int i) throws SQLException {
