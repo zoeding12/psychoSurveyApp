@@ -57,13 +57,13 @@ public class QuestionImpl implements QuestionDao{
 
     @Override
     public void updateQuestion(Question question) {
-        final String sql = "UPDATE questions SET content = ?, category = ?, generation_id =?, WHERE id = ?";
+        final String sql = "UPDATE questions SET content = ?, category = ?, generation_id =? WHERE id = ?";
         final int id = question.getId();
         final String content = question.getContent();
         final String category = question.getCategory();
         final int generation_id = question.getGeneration_id();
 
-        this.jdbcTemplate.update(sql, new Object[] {content, content, category, id});
+        this.jdbcTemplate.update(sql, new Object[] {content, category, generation_id, id});
     }
 
     @Override

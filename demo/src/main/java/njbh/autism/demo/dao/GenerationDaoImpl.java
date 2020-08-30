@@ -26,8 +26,8 @@ public class GenerationDaoImpl implements GenerationDao{
             Generation generation = new Generation();
 
             generation.setId(resultSet.getInt("id"));
-            generation.setFrom(resultSet.getInt("from"));
-            generation.setTo(resultSet.getInt("to"));
+            generation.setFloor(resultSet.getInt("floor"));
+            generation.setCeil(resultSet.getInt("ceil"));
             return generation;
         }
     }
@@ -53,21 +53,21 @@ public class GenerationDaoImpl implements GenerationDao{
 
     @Override
     public void updateGeneration(Generation generation) {
-        final String sql = "UPDATE generations SET from = ?, to = ? WHERE id = ?";
+        final String sql = "UPDATE generations SET floor = ?, ceil = ? WHERE id = ?";
         final int id = generation.getId();
-        final int from = generation.getFrom();
-        final int to = generation.getTo();
+        final int floor = generation.getFloor();
+        final int ceil = generation.getCeil();
 
-        this.jdbcTemplate.update(sql, id, from, to);
+        this.jdbcTemplate.update(sql, floor, ceil, id);
     }
 
     @Override
     public void insertGeneration(Generation generation) {
         final String sql = "INSERT INTO generations  VALUES (?, ?, ?)";
         final int id = generation.getId();
-        final int from = generation.getFrom();
-        final int to = generation.getTo();
+        final int floor = generation.getFloor();
+        final int ceil = generation.getCeil();
 
-        this.jdbcTemplate.update(sql, id, from, to);
+        this.jdbcTemplate.update(sql, id, floor, ceil);
     }
 }

@@ -11,13 +11,13 @@ public class Generation {
     @Id
     @GeneratedValue
     private int id;
-    private int from;
-    private int to;
+    private int floor;
+    private int ceil;
 
-    public Generation(int id, int from, int to) {
+    public Generation(int id, int floor, int ceil) {
         this.id = id;
-        this.from = from;
-        this.to = to;
+        this.floor = floor;
+        this.ceil = ceil;
     }
 
     public Generation(){}
@@ -30,19 +30,19 @@ public class Generation {
         this.id = id;
     }
 
-    public int getFrom() {
-        return from;
+    public int getFloor() {
+        return floor;
     }
 
-    public void setFrom(int from) {
-        this.from = from;
+    public void setFloor(int floor) {
+        this.floor = floor;
     }
 
-    public int getTo() {
-        return to;
+    public int getCeil() {
+        return ceil;
     }
 
-    public void setTo(int to) {
-        this.to = to;
+    public void setCeil(int ceil) {
+        this.ceil = ceil;
     }
 }
