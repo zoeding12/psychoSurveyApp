@@ -7,9 +7,9 @@ import java.util.Collection;
 public interface QuestionDao {
     Collection<Question> getAllRecords();
 
-    Question getQuestionById(int id);
+    Question getQuestionById(String qid);
 
-    void removeQuestionById(int id);
+    void removeQuestionById(String qid);
 
     void updateQuestion(Question question);
 

@@ -25,13 +25,13 @@ public class QuestionController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Question getQuestionById(@PathVariable("id") int id){
-        return this.questionDao.getQuestionById(id);
+    public Question getQuestionById(@PathVariable("id") String qid){
+        return this.questionDao.getQuestionById(qid);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void removeQuestionById(@PathVariable("id") int id){
-        this.questionDao.removeQuestionById(id);
+    public void removeQuestionById(@PathVariable("id") String qid){
+        this.questionDao.removeQuestionById(qid);
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)

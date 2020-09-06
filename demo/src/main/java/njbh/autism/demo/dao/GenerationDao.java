@@ -8,9 +8,9 @@ import java.util.Collection;
 public interface GenerationDao {
     Collection<Generation> getAllRecords();
 
-    Generation getGenerationById(int id);
+    Generation getGenerationById(String gid);
 
-    void removeGenerationById(int id);
+    void removeGenerationById(String gid);
 
     void updateGeneration(Generation generation);
 

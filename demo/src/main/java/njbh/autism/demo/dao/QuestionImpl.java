@@ -25,10 +25,10 @@ public class QuestionImpl implements QuestionDao{
         @Override
         public Question mapRow(ResultSet resultSet, int i) throws SQLException {
             Question question = new Question();
-            question.setId(resultSet.getInt("id"));
+            question.setQid(resultSet.getString("qid"));
             question.setContent(resultSet.getString("content"));
             question.setCategory(resultSet.getString("category"));
-            question.setGeneration_id(resultSet.getInt("generation_id"));
+            question.setGid(resultSet.getString("gid"));
 
             return question;
         }
@@ -42,39 +42,39 @@ public class QuestionImpl implements QuestionDao{
     }
 
     @Override
-    public Question getQuestionById(int id) {
+    public Question getQuestionById(String qid) {
         // "?" would be replaced with id directly by Spring Boot
-        final String sql = "SELECT * FROM questions WHERE id = ?";
-        Question question = jdbcTemplate.queryForObject(sql, new QuestionImpl.QuestionRowMapper(), id);
+        final String sql = "SELECT * FROM questions WHERE qid = ?";
+        Question question = jdbcTemplate.queryForObject(sql, new QuestionImpl.QuestionRowMapper(), qid);
         return question;
     }
 
     @Override
-    public void removeQuestionById(int id) {
-        final String sql = "DELETE FROM questions WHERE id = ?";
-        this.jdbcTemplate.update(sql, id);
+    public void removeQuestionById(String qid) {
+        final String sql = "DELETE FROM questions WHERE qid = ?";
+        this.jdbcTemplate.update(sql, qid);
     }
 
     @Override
     public void updateQuestion(Question question) {
-        final String sql = "UPDATE questions SET content = ?, category = ?, generation_id =? WHERE id = ?";
-        final int id = question.getId();
+        final String sql = "UPDATE questions SET content = ?, category = ?, gid =? WHERE qid = ?";
+        final String qid = question.getQid();
         final String content = question.getContent();
         final String category = question.getCategory();
-        final int generation_id = question.getGeneration_id();
+        final String gid = question.getGid();
 
-        this.jdbcTemplate.update(sql, new Object[] {content, category, generation_id, id});
+        this.jdbcTemplate.update(sql, new Object[] {content, category, gid, qid});
     }
 
     @Override
     public void insertQuestion(Question question) {
         final String sql = "INSERT INTO questions  VALUES (?, ?, ?, ?)";
-        final int id = question.getId();
+        final String qid = question.getQid();
         final String content = question.getContent();
         final String category = question.getCategory();
-        final int generation_id = question.getGeneration_id();
+        final String gid = question.getGid();
 
-        this.jdbcTemplate.update(sql, new Object[] {id, content, category, generation_id});
+        this.jdbcTemplate.update(sql, new Object[] {qid, content, category, gid});
     }
 
 

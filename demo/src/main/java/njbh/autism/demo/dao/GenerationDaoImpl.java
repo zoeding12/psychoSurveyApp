@@ -25,7 +25,7 @@ public class GenerationDaoImpl implements GenerationDao{
         public Generation mapRow(ResultSet resultSet, int i) throws SQLException {
             Generation generation = new Generation();
 
-            generation.setId(resultSet.getInt("id"));
+            generation.setGid(resultSet.getString("gid"));
             generation.setFloor(resultSet.getInt("floor"));
             generation.setCeil(resultSet.getInt("ceil"));
             return generation;
@@ -39,35 +39,35 @@ public class GenerationDaoImpl implements GenerationDao{
     }
 
     @Override
-    public Generation getGenerationById(int id) {
-        final String sql = "SELECT * FROM generations WHERE id = ?";
-        Generation generation = jdbcTemplate.queryForObject(sql, new GenerationDaoImpl.GenerationRowMapper(), id);
+    public Generation getGenerationById(String gid) {
+        final String sql = "SELECT * FROM generations WHERE gid = ?";
+        Generation generation = jdbcTemplate.queryForObject(sql, new GenerationDaoImpl.GenerationRowMapper(), gid);
         return generation;
     }
 
     @Override
-    public void removeGenerationById(int id) {
-        final String sql = "DELETE FROM generations WHERE id = ?";
-        this.jdbcTemplate.update(sql, id);
+    public void removeGenerationById(String gid) {
+        final String sql = "DELETE FROM generations WHERE gid = ?";
+        this.jdbcTemplate.update(sql, gid);
     }
 
     @Override
     public void updateGeneration(Generation generation) {
-        final String sql = "UPDATE generations SET floor = ?, ceil = ? WHERE id = ?";
-        final int id = generation.getId();
+        final String sql = "UPDATE generations SET floor = ?, ceil = ? WHERE gid = ?";
+        final String gid = generation.getGid();
         final int floor = generation.getFloor();
         final int ceil = generation.getCeil();
 
-        this.jdbcTemplate.update(sql, floor, ceil, id);
+        this.jdbcTemplate.update(sql, floor, ceil, gid);
     }
 
     @Override
     public void insertGeneration(Generation generation) {
         final String sql = "INSERT INTO generations  VALUES (?, ?, ?)";
-        final int id = generation.getId();
+        final String gid = generation.getGid();
         final int floor = generation.getFloor();
         final int ceil = generation.getCeil();
 
-        this.jdbcTemplate.update(sql, id, floor, ceil);
+        this.jdbcTemplate.update(sql, gid, floor, ceil);
     }
 }

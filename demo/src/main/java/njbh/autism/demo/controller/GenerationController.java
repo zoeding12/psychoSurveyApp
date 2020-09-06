@@ -25,13 +25,13 @@ public class GenerationController {
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.GET)
-    public Generation getGenerationById(@PathVariable("id") int id){
-        return this.generationDao.getGenerationById(id);
+    public Generation getGenerationById(@PathVariable("id") String  gid){
+        return this.generationDao.getGenerationById(gid);
     }
 
     @RequestMapping(value = "/{id}", method = RequestMethod.DELETE)
-    public void removeGenerationById(@PathVariable("id") int id){
-        this.generationDao.removeGenerationById(id);
+    public void removeGenerationById(@PathVariable("id") String gid){
+        this.generationDao.removeGenerationById(gid);
     }
 
     @RequestMapping(method = RequestMethod.PUT, consumes = MediaType.APPLICATION_JSON_VALUE)

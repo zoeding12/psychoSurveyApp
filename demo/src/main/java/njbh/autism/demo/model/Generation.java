@@ -10,24 +10,24 @@ import javax.persistence.Table;
 public class Generation {
     @Id
     @GeneratedValue
-    private int id;
+    private String gid;
     private int floor;
     private int ceil;
 
-    public Generation(int id, int floor, int ceil) {
-        this.id = id;
+    public Generation(String gid, int floor, int ceil) {
+        this.gid = gid;
         this.floor = floor;
         this.ceil = ceil;
     }
 
     public Generation(){}
 
-    public int getId() {
-        return id;
+    public String getGid() {
+        return gid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setGid(String gid) {
+        this.gid = gid;
     }
 
     public int getFloor() {

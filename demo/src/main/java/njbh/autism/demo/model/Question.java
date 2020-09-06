@@ -10,26 +10,26 @@ import javax.persistence.Table;
 public class Question {
     @Id
     @GeneratedValue
-    private int id;
+    private String qid;
     private String content;
     private String category;
-    private int generation_id;
+    private String gid;
 
-    public Question(int id, String content, String category, int generation_id) {
-        this.id = id;
+    public Question(String qid, String content, String category, String gid) {
+        this.qid = qid;
         this.content = content;
         this.category = category;
-        this.generation_id = generation_id;
+        this.gid = gid;
     }
 
     public Question(){}
 
-    public int getId() {
-        return id;
+    public String getQid() {
+        return qid;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setQid(String qid) {
+        this.qid = qid;
     }
 
     public String getContent() {
@@ -48,11 +48,11 @@ public class Question {
         this.category = category;
     }
 
-    public int getGeneration_id() {
-        return generation_id;
+    public String getGid() {
+        return gid;
     }
 
-    public void setGeneration_id(int generation_id) {
-        this.generation_id = generation_id;
+    public void setGid(String gid) {
+        this.gid = gid;
     }
 }
