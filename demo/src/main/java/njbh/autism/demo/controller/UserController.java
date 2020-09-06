@@ -1,14 +1,10 @@
 package njbh.autism.demo.controller;
+import com.fasterxml.jackson.annotation.JsonFormat;
 import njbh.autism.demo.model.User;
 import njbh.autism.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.web.bind.annotation.*;
-
-
-import java.util.Collection;
-import java.util.List;
-import java.util.UUID;
 
 @RestController //This means that this class is a controller
 @RequestMapping(path = "/users") //this means url starts with /survey after application path
@@ -22,11 +18,11 @@ public class UserController {
     }
 
     @PostMapping(path = "/addUser")
-    public @ResponseBody String addUser(@RequestParam int id,
+    public @ResponseBody String addUser(@RequestParam String uid,
                                         @RequestParam String name,
                                         @RequestParam String email,
-                                        @RequestParam String birthday) {
-        userRepo.save(new User(id, name, email, birthday));
+                                        @RequestParam @JsonFormat(pattern="yyyy-MM-dd") String birthday) {
+        userRepo.save(new User(uid, name, email, birthday));
         return "saved";
     }
 }

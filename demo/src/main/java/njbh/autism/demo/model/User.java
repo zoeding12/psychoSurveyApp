@@ -1,43 +1,42 @@
 package njbh.autism.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 
 @Entity // this tells Hibernate to make a table out of this class
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue
-    private int id;
+    private String uid;
     private String name;
-    private String birthday;
     private String email;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private String birthday;
+
 
     protected User() {}
 
-    public User(int id, String name, String birthday, String email) {
-        this.id = id;
+    public User(String uid, String name, String email, String birthday) {
+        this.uid = uid;
         this.name = name;
-        this.birthday = birthday;
-//        this.age = age;
         this.email = email;
+        this.birthday = birthday;
     }
 
-    public int getId() {
-        return id;
+    public String getUid() {
+        return uid;
     }
 
     public String getName() {
         return name;
     }
 
-    public String getBirthday() {
-        return birthday;
-    }
-
-//    public int getAge() { return age; }
-
     public String getEmail() {
         return email;
     }
-
+    
+    public String getBirthday() {
+        return birthday;
+    }
 }
